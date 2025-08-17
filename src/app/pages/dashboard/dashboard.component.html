@@ -1,16 +1,62 @@
 <div class="dashboard">
-  <h1>Panel de Inventario</h1>
-  <div class="dashboard-content">
-    <div class="dashboard-content-sidebar">
-      <h3>Categorías</h3>
+  <div class="dashboard-sidebar">
+    <div class="dashboard-sidebar-header">
+      <h2 class="logo">Kinetic</h2>
+      <p class="logoSubtitle">Taller Mecánico</p>
     </div>
-    <div class="dashboard-content-main">
-      <div class="dashboard-content-mainTable">
-        <h2>Productos</h2>
-        <div *ngFor="let product of products$ | async">
-          <p> - {{ product.name }}</p>
+
+    <nav class="dashboard-sidebar-nav">
+      <div class="navSection">
+        <h3 class="navSection-title">CATEGORÍAS</h3>
+      </div>
+    </nav>
+  </div>
+
+  <div class="dashboard-main">
+    <div class="dashboard-main-header">
+      <div class="userProfile">
+        <div class="userProfile-avatar">
+          <mat-icon>person</mat-icon>
         </div>
-        <h3>Productos cargados: {{ (products$ | async)?.length || 0 }}</h3>
+        <span class="userProfile-name">Mi nombre</span>
+      </div>
+    </div>
+
+    <div class="dashboard-main-content">
+      <div class="banner">
+        <div class="banner-section">
+          <h1>GESTIÓN DE INVENTARIO</h1>
+          <p>
+            Administra el inventario de tu taller mecánico de manera eficiente
+          </p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stats-card">
+          <div class="stats-card-icon purple">🔧</div>
+          <div class="stats-card-info">
+            <h3>Total Productos</h3>
+            <p class="number">{{ (products$ | async)?.length || 0 }}</p>
+          </div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-card-icon cyan">⚠️</div>
+          <div class="stats-card-info">
+            <h3>Stock Bajo</h3>
+            <p class="number">3</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="table-header">
+          <h2>Lista de Productos</h2>
+        </div>
+
+        <div class="table-container">
+          <p>Tabla de Angular Material</p>
+        </div>
       </div>
     </div>
   </div>
