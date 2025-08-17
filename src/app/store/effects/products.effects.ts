@@ -68,6 +68,28 @@ export class ProductsEffects {
     );
   });
 
+  deleteProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.deleteProduct),
+      switchMap(({ id }) =>
+        this.productsService.deleteProductById(id).pipe(
+          map((res: any) =>
+            ProductActions.deleteProductSuccess({
+              message: res.message,
+              success: res.success,
+              id: id,
+            })
+          ),
+          catchError((res) =>
+            of(
+              ProductActions.deleteProductFailure({ error: res.error.message })
+            )
+          )
+        )
+      )
+    );
+  });
+
   // Alerts Effects
   showAddProductSuccess$ = createEffect(
     () =>
@@ -86,6 +108,17 @@ export class ProductsEffects {
         ofType(ProductActions.updateProductSuccess),
         tap(({ message }) => {
           this.notificationService.success('¡Producto actualizado!', message);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  showDeleteProductSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ProductActions.deleteProductSuccess),
+        tap(({ message }) => {
+          this.notificationService.success('¡Producto eliminado!', message);
         })
       ),
     { dispatch: false }

@@ -154,4 +154,22 @@ export class ProductsService {
       throw new Error('Producto no encontrado');
     }
   }
+
+  deleteProductById(id: number): Observable<{ message: string; success: boolean }> {
+    // Encontrar el índice del producto a eliminar
+    const index = this.products.findIndex((p) => p.id === id.toString());
+
+    if (index !== -1) {
+      const productName = this.products[index].name;
+      
+      this.products = this.products.filter((p) => p.id !== id.toString());
+
+      return of({
+        message: `${productName} eliminado correctamente`,
+        success: true,
+      });
+    } else {
+      throw new Error('Producto no encontrado');
+    }
+  }
 }

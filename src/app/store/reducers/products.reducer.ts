@@ -53,5 +53,21 @@ export const productsReducer = createReducer(
         messageError: null,
       }
     )
-  )
+  ),
+
+  on(ProductActions.deleteProduct, (state) => ({
+    ...state,
+    loading: true,
+    messageSuccess: null,
+    messageError: null,
+  })),
+
+  on(ProductActions.deleteProductSuccess, (state, { message, id }) =>
+    productsAdapter.removeOne(id, {
+      ...state,
+      loading: false,
+      messageSuccess: message,
+      messageError: null,
+    })
+  ),
 );

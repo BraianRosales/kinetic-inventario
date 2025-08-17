@@ -1,0 +1,87 @@
+.confirmDialog {
+  padding: 0;
+  max-width: 400px;
+  width: 100%;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 24px 24px 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+
+    &-iconContainer {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+
+      &.warning {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      &.danger {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      &.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+      }
+
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    h2 {
+      margin: 0;
+      flex: 1;
+      font-size: 20px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: #666;
+    }
+  }
+
+  &-content {
+    padding: 24px;
+  
+    .message {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #555;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px 24px 24px;
+    border-top: 1px solid #e0e0e0;
+  
+    .cancel-button {
+      min-width: 100px;
+    }
+  
+    .confirm-button {
+      min-width: 120px;
+    }
+  }
+}
+

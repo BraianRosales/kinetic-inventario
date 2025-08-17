@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '../../store/app.state.';
 import { selectProducts } from '../../store/selectors/products.selectors';
-import { loadProducts, addProduct, updateProduct } from '../../store/actions/products.actions';
+import { loadProducts, addProduct, updateProduct, deleteProduct } from '../../store/actions/products.actions';
 import { Product } from '../../core/models/product.model';
 import { AddProductDialogComponent } from '../../shared/components/add-product-dialog/add-product-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { CategoryService } from '../../core/services/category.service';
 
 @Component({
@@ -96,7 +97,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Métodos para manejar eventos de la tabla
   onViewProduct(product: Product): void {
     this.router.navigate(['/product', product.id]);
   }
@@ -118,6 +118,26 @@ export class DashboardComponent implements OnInit {
   }
 
   onDeleteProduct(product: Product): void {
-    console.log('Eliminar producto:', product);
+    const dialogData: ConfirmDialogData = {
+      title: 'Eliminar Producto',
+      message: `¿Estás seguro de que queres eliminar "${product.name}"?`,
+      confirmText: 'Eliminar',
+      cancelText: 'Cancelar',
+      type: 'danger'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      maxWidth: '90vw',
+      disableClose: false,
+      autoFocus: false,
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.store.dispatch(deleteProduct({ id: parseInt(product.id) }));
+      }
+    });
   }
 }
