@@ -37,27 +37,35 @@
           <div class="stats-card-icon purple">🔧</div>
           <div class="stats-card-info">
             <h3>Total Productos</h3>
-            <p class="number">{{ (products$ | async)?.length || 0 }}</p>
+            <p class="number">{{ totalProducts }}</p>
           </div>
         </div>
         <div class="stats-card">
           <div class="stats-card-icon cyan">⚠️</div>
           <div class="stats-card-info">
             <h3>Stock Bajo</h3>
-            <p class="number">3</p>
+            <p class="number">{{ lowStockProducts }}</p>
+          </div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-card-icon green">💰</div>
+          <div class="stats-card-info">
+            <h3>Valor Total</h3>
+            <p class="number">{{ formatPrice(totalValue) }}</p>
           </div>
         </div>
       </div>
 
-      <div class="table">
-        <div class="table-header">
-          <h2>Lista de Productos</h2>
-        </div>
-
-        <div class="table-container">
-          <p>Tabla de Angular Material</p>
-        </div>
-      </div>
+      <!-- Tabla de productos -->
+      <app-kinetic-table
+        [products]="(products$ | async) || []"
+        title="Lista de Productos"
+        [showActions]="true"
+        (viewProduct)="onViewProduct($event)"
+        (editProduct)="onEditProduct($event)"
+        (deleteProduct)="onDeleteProduct($event)"
+      >
+      </app-kinetic-table>
     </div>
   </div>
 </div>

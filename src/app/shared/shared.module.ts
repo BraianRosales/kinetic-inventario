@@ -2,10 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { KineticTableComponent } from './components/kinetic-table/kinetic-table.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [KineticTableComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    KineticTableComponent,
+  ],
 })
 export class SharedModule {}

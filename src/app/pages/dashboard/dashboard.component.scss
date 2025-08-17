@@ -93,6 +93,7 @@
     &-content {
       flex: 1;
       padding: 32px;
+      padding-bottom: 80px; // Espacio extra para el paginador
       overflow-y: auto;
 
       .banner {
@@ -133,13 +134,6 @@
           display: flex;
           align-items: center;
           gap: 16px;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-          &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-          }
 
           &-icon {
             width: 48px;
@@ -163,6 +157,11 @@
               background: linear-gradient(135deg, $accent-color, $accent-light);
               color: $white;
             }
+
+            &.green {
+              background: linear-gradient(135deg, #4caf50, #66bb6a);
+              color: $white;
+            }
           }
 
           &-info {
@@ -180,19 +179,6 @@
               margin: 0;
             }
           }
-        }
-      }
-
-      .table {
-        &-header {
-          margin-bottom: 20px;
-        }
-
-        &-container {
-          background: $bg-primary;
-          border: 1px solid $border-color;
-          border-radius: 12px;
-          overflow: hidden;
         }
       }
     }
