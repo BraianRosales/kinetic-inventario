@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '../../store/app.state.';
 import { selectProducts } from '../../store/selectors/products.selectors';
-import { loadProducts, addProduct } from '../../store/actions/products.actions';
+import { loadProducts, addProduct, updateProduct } from '../../store/actions/products.actions';
 import { Product } from '../../core/models/product.model';
 import { AddProductDialogComponent } from '../../shared/components/add-product-dialog/add-product-dialog.component';
 import { CategoryService } from '../../core/services/category.service';
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
     if (!this.selectedCategoryId) {
       this.filteredProducts = [...this.allProducts];
     } else {
-      this.filteredProducts = this.allProducts.filter(product => 
+      this.filteredProducts = this.allProducts.filter((product) =>
         product.categories.includes(this.selectedCategoryId!)
       );
     }
@@ -102,7 +102,19 @@ export class DashboardComponent implements OnInit {
   }
 
   onEditProduct(product: Product): void {
-    console.log('Editar producto:', product);
+    const dialogRef = this.dialog.open(AddProductDialogComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      disableClose: false,
+      autoFocus: false,
+      data: { product }
+    });
+
+    dialogRef.afterClosed().subscribe((updatedProduct: Product) => {
+      if (updatedProduct) {
+        this.store.dispatch(updateProduct({ productToUpdate: updatedProduct }));
+      }
+    });
   }
 
   onDeleteProduct(product: Product): void {

@@ -34,5 +34,24 @@ export const productsReducer = createReducer(
       messageSuccess: message,
       messageError: null,
     })
+  ),
+
+  on(ProductActions.updateProduct, (state) => ({
+    ...state,
+    loading: true,
+    messageSuccess: null,
+    messageError: null,
+  })),
+
+  on(ProductActions.updateProductSuccess, (state, { message, product }) =>
+    productsAdapter.updateOne(
+      { id: Number(product.id), changes: product },
+      {
+        ...state,
+        loading: false,
+        messageSuccess: message,
+        messageError: null,
+      }
+    )
   )
 );

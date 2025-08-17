@@ -22,3 +22,13 @@ export const addProductFailure = createAction(
   '[Product API] Post product failure',
   props<{ error: string }>()
 );
+
+export const updateProduct = createAction(
+  '[Product API] Update product',
+  props<{ productToUpdate: Product }>()
+);
+
+export const updateProductSuccess = createAction(
+  '[Product API] Update product Success',
+  props<{ message: string; product: Product }>()
+);

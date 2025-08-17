@@ -124,12 +124,34 @@ export class ProductsService {
     const newId = (this.products.length + 1).toString();
     const newProduct = { ...product, id: newId };
 
-    // Crear una nueva copia del array y agregar el producto
     this.products = [...this.products, newProduct];
 
     return of({
       message: `${newProduct.name} agregado correctamente`,
       product: newProduct,
     });
+  }
+
+  updateProduct(
+    productToUpdate: Product
+  ): Observable<{ message: string; product: Product }> {
+    // Encontrar el índice del producto a actualizar
+    const index = this.products.findIndex((p) => p.id === productToUpdate.id);
+
+    if (index !== -1) {
+      // Actualizar el producto en el array
+      this.products = [
+        ...this.products.slice(0, index),
+        productToUpdate,
+        ...this.products.slice(index + 1),
+      ];
+
+      return of({
+        message: `${productToUpdate.name} actualizado correctamente`,
+        product: productToUpdate,
+      });
+    } else {
+      throw new Error('Producto no encontrado');
+    }
   }
 }

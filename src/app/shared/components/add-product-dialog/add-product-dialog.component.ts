@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryService } from '../../../core/services/category.service';
-import { Category } from '../../../core/models/product.model';
+import { Category, Product } from '../../../core/models/product.model';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -11,6 +11,8 @@ import { Category } from '../../../core/models/product.model';
 })
 export class AddProductDialogComponent implements OnInit {
   productForm: FormGroup;
+  isEditMode = false;
+  dialogTitle = 'Agregar Producto';
 
   // Categorías disponibles
   availableCategories: Category[] = [];
@@ -18,7 +20,8 @@ export class AddProductDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddProductDialogComponent>,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    @Inject(MAT_DIALOG_DATA) public data: { product?: Product }
   ) {
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -33,6 +36,25 @@ export class AddProductDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
+    this.initializeForm();
+  }
+
+  private initializeForm(): void {
+    if (this.data?.product) {
+      this.isEditMode = true;
+      this.dialogTitle = 'Editar Producto';
+
+      // Prellenar el formulario con los datos del producto
+      this.productForm.patchValue({
+        name: this.data.product.name,
+        description: this.data.product.description,
+        price: this.data.product.price,
+        stock: this.data.product.stock,
+        brand: this.data.product.brand,
+        location: this.data.product.location,
+        categories: this.data.product.categories,
+      });
+    }
   }
 
   private loadCategories(): void {
@@ -43,7 +65,17 @@ export class AddProductDialogComponent implements OnInit {
 
   onSave(): void {
     if (this.productForm.valid) {
-      this.dialogRef.close(this.productForm.value);
+      const formValue = this.productForm.value;
+
+      if (this.isEditMode && this.data?.product) {
+        const updatedProduct = {
+          ...this.data.product,
+          ...formValue,
+        };
+        this.dialogRef.close(updatedProduct);
+      } else {
+        this.dialogRef.close(formValue);
+      }
     } else {
       this.markFormGroupTouched();
     }

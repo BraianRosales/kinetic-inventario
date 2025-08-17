@@ -49,6 +49,25 @@ export class ProductsEffects {
     );
   });
 
+  updateProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.updateProduct),
+      switchMap(({ productToUpdate }) =>
+        this.productsService.updateProduct(productToUpdate).pipe(
+          map((res) =>
+            ProductActions.updateProductSuccess({
+              message: res.message,
+              product: res.product,
+            })
+          ),
+          catchError((res) =>
+            of(ProductActions.addProductFailure({ error: res.error.message }))
+          )
+        )
+      )
+    );
+  });
+
   // Alerts Effects
   showAddProductSuccess$ = createEffect(
     () =>
@@ -56,6 +75,17 @@ export class ProductsEffects {
         ofType(ProductActions.addProductSuccess),
         tap(({ message }) => {
           this.notificationService.success('¡Producto agregado!', message);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  showUpdateProductSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ProductActions.updateProductSuccess),
+        tap(({ message }) => {
+          this.notificationService.success('¡Producto actualizado!', message);
         })
       ),
     { dispatch: false }

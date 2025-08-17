@@ -6,7 +6,9 @@
     </div>
 
     <nav class="dashboard-sidebar-nav">
-      <app-category-tree (categorySelected)="onCategorySelected($event)"></app-category-tree>
+      <app-category-tree
+        (categorySelected)="onCategorySelected($event)"
+      ></app-category-tree>
     </nav>
   </div>
 
@@ -69,8 +71,13 @@
         (deleteProduct)="onDeleteProduct($event)"
       >
         <div slot="header-actions">
-          <button mat-fab color="primary" (click)="openAddProductDialog()" 
-                  class="addProductButton" title="Agregar Producto">
+          <button
+            mat-fab
+            color="primary"
+            (click)="openAddProductDialog()"
+            class="addProductButton"
+            title="Agregar Producto"
+          >
             <mat-icon>add</mat-icon>
           </button>
         </div>
@@ -78,3 +85,4 @@
     </div>
   </div>
 </div>
+                                         
