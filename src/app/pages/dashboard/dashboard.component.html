@@ -1,0 +1,17 @@
+<div class="dashboard">
+  <h1>Panel de Inventario</h1>
+  <div class="dashboard-content">
+    <div class="dashboard-content-sidebar">
+      <h3>Categorías</h3>
+    </div>
+    <div class="dashboard-content-main">
+      <div class="dashboard-content-mainTable">
+        <h2>Productos</h2>
+        <div *ngFor="let product of products$ | async">
+          <p> - {{ product.name }}</p>
+        </div>
+        <h3>Productos cargados: {{ (products$ | async)?.length || 0 }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

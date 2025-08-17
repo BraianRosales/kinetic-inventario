@@ -1,11 +1,8 @@
-<div>
-  <h1>Kinetic Inventario</h1>
-  <div>
-    <h2>Productos</h2>
-    <ul>
-      <li *ngFor="let product of products$ | async">
-        {{ product.name }}
-      </li>
-    </ul>
-  </div>
+<div class="app">
+  <header class="app-header">
+    <h1>Kinetic Inventario</h1>
+  </header>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
 </div>

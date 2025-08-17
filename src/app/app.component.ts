@@ -1,21 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AppState } from './store/app.state.';
-import { Store } from '@ngrx/store';
-import { loadProducts } from './store/actions/products.actions';
-import { selectProducts } from './store/selectors/products.selectors';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'kinetic-inventario';
-  products$ = this.store.select(selectProducts);
-
-  constructor(private store: Store<AppState>) {}
-
-  ngOnInit(): void {
-    this.store.dispatch(loadProducts());
-  }
 }

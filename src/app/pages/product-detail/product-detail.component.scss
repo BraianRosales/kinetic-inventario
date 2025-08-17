@@ -1,0 +1,18 @@
+.productDetail {
+  &-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &-info {
+      margin-top: 20px;
+    }
+
+    &-info p {
+      margin: 10px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
