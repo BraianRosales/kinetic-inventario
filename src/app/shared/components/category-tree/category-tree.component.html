@@ -1,0 +1,43 @@
+<div class="categoryTree">
+  <div class="categoryTree-header">
+    <h3>CATEGORÍAS</h3>
+    <button mat-icon-button (click)="treeControl.expandAll()" class="expand-all-btn" title="Expandir todo">
+      <mat-icon>expand_all</mat-icon>
+    </button>
+  </div>
+
+  <mat-tree class="categoryTree-content" [dataSource]="dataSource" [treeControl]="treeControl" >
+    <!-- Nodo con hijos -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [class.selected]="isSelected(node.id)">
+      <button mat-icon-button disabled></button>
+      <mat-icon class="category-icon">
+        {{ node.level === 0 ? 'folder' : 'description' }}
+      </mat-icon>
+      <span class="category-name" (click)="onCategoryClick(node.id)">
+        {{ node.name }}
+      </span>
+    </mat-tree-node>
+
+    <!-- Nodo expandible -->
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding [class.selected]="isSelected(node.id)">
+      <button mat-icon-button [attr.aria-label]="'Expandir ' + node.name" (click)="treeControl.toggle(node)">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+        </mat-icon>
+      </button>
+      <mat-icon class="category-icon">
+        {{ node.level === 0 ? 'folder' : 'description' }}
+      </mat-icon>
+      <span class="category-name" (click)="onCategoryClick(node.id)">
+        {{ node.name }}
+      </span>
+    </mat-tree-node>
+  </mat-tree>
+
+  <div class="categoryTree-products">
+    <button mat-button class="show-all-btn" (click)="onCategoryClick('all')">
+      <mat-icon>list</mat-icon>
+      <span>Mostrar Todos</span>
+    </button>
+  </div>
+</div>

@@ -6,9 +6,7 @@
     </div>
 
     <nav class="dashboard-sidebar-nav">
-      <div class="navSection">
-        <h3 class="navSection-title">CATEGORÍAS</h3>
-      </div>
+      <app-category-tree (categorySelected)="onCategorySelected($event)"></app-category-tree>
     </nav>
   </div>
 
@@ -62,15 +60,20 @@
         </div>
       </div>
 
-      <!-- Tabla de productos -->
       <app-kinetic-table
-        [products]="(products$ | async) || []"
+        [products]="filteredProducts"
         title="Lista de Productos"
         [showActions]="true"
         (viewProduct)="onViewProduct($event)"
         (editProduct)="onEditProduct($event)"
         (deleteProduct)="onDeleteProduct($event)"
       >
+        <div slot="header-actions">
+          <button mat-fab color="primary" (click)="openAddProductDialog()" 
+                  class="addProductButton" title="Agregar Producto">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </app-kinetic-table>
     </div>
   </div>

@@ -93,7 +93,7 @@
     &-content {
       flex: 1;
       padding: 32px;
-      padding-bottom: 80px; // Espacio extra para el paginador
+      padding-bottom: 80px;
       overflow-y: auto;
 
       .banner {
@@ -190,4 +190,25 @@
       }
     }
   }
+
+  .addProductButton {
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .mat-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+::ng-deep .mat-fab .mat-button-wrapper {
+  padding: 0px !important;
 }

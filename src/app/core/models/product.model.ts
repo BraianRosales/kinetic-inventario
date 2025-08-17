@@ -4,7 +4,7 @@ export interface Product {
   description: string;
   price: number;
   stock: number;
-  categories: string[];
+  categories: string[]; // IDs de las categorías
   brand?: string;
   location?: string;
 }
@@ -24,6 +24,16 @@ export interface Category {
   name: string;
   parentId?: string;
   children?: Category[];
+  level?: number;
+  expandable?: boolean;
+}
+
+export interface CategoryNode {
+  id: string;
+  name: string;
+  level: number;
+  expandable: boolean;
+  parentId?: string;
 }
 
 export interface InventoryStats {

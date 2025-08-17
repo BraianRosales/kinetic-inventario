@@ -9,6 +9,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../../../core/models/product.model';
+import { CategoryService } from '../../../core/services/category.service';
 
 @Component({
   selector: 'app-kinetic-table',
@@ -32,10 +33,13 @@ export class KineticTableComponent implements AfterViewInit {
     'stock',
     'price',
     'location',
+    'categories',
   ];
   dataSource = new MatTableDataSource<Product>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private categoryService: CategoryService) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -58,6 +62,7 @@ export class KineticTableComponent implements AfterViewInit {
       'stock',
       'price',
       'location',
+      'categories',
     ];
     if (this.showActions) {
       this.displayedColumns.push('actions');
@@ -81,6 +86,12 @@ export class KineticTableComponent implements AfterViewInit {
     } else {
       return { text: 'Disponible', class: 'stock-ok' };
     }
+  }
+
+  getCategoryNames(categoryIds: string[]): string {
+    return categoryIds
+      .map(id => this.categoryService.getCategoryNameById(id))
+      .join(', ');
   }
 
   // Métodos para manejar eventos
