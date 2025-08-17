@@ -19,6 +19,41 @@
       <p><strong>Ubicación:</strong> {{ product.location }}</p>
       <p><strong>Categorías:</strong> {{ product.categories.join(", ") }}</p>
     </div>
+
+    <div class="productDetail-content-movements">
+      <h2>Historial de Movimientos</h2>
+      <div
+        class="movements-list"
+        *ngIf="(movements$ | async)?.length; else noMovements"
+      >
+        <div class="movement-item" *ngFor="let movement of movements$ | async">
+          <div
+            class="movement-icon"
+            [ngClass]="getMovementColor(movement.type)"
+          >
+            <mat-icon>{{ getMovementIcon(movement.type) }}</mat-icon>
+          </div>
+          <div class="movement-details">
+            <div class="movement-quantity" [ngClass]="movement.type">
+              {{ movement.type === "IN" ? "+" : "" }}{{ movement.quantity }}
+            </div>
+            <div class="movement-reason">{{ movement.reason }}</div>
+            <div class="movement-date">
+              {{ movement.date | date : "dd/MM/yyyy HH:mm" }}
+            </div>
+          </div>
+          <div class="movement-stock">
+            {{ movement.previousStock }} → {{ movement.newStock }}
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noMovements>
+        <p class="no-movements">
+          No hay movimientos registrados para este producto.
+        </p>
+      </ng-template>
+    </div>
   </div>
 
   <ng-template #loading>

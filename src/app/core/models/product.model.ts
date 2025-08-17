@@ -12,10 +12,13 @@ export interface Product {
 export interface ProductMovement {
   id: string;
   productId: string;
-  type: 'IN' | 'OUT';
+  type: 'IN' | 'OUT' | 'ADJUSTMENT';
   quantity: number;
+  previousStock: number;
+  newStock: number;
   reason: string;
   date: Date;
+  notes?: string;
   userId?: string;
 }
 
