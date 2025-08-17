@@ -10,6 +10,10 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 
+import { ROOT_REDUCERS } from './store/app.state.';
+import { ProductsEffects } from './store/effects/products.effects';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,8 +21,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(ROOT_REDUCERS),
+    EffectsModule.forRoot([ProductsEffects]),
+    HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

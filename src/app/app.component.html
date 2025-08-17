@@ -1,87 +1,11 @@
-<h1>Hello World!</h1>
-
-<div class="buttons">
-  <h2>Botones</h2>
-  <button mat-raised-button color="primary">Primary</button>
-  <button mat-raised-button color="accent">Accent</button>
-  <button mat-raised-button color="warn">Warn</button>
-  <button mat-stroked-button>Stroked</button>
-  <button mat-flat-button color="primary">Flat</button>
-  <button mat-icon-button>
-    <mat-icon>favorite</mat-icon>
-  </button>
+<div>
+  <h1>Kinetic Inventario</h1>
+  <div>
+    <h2>Productos</h2>
+    <ul>
+      <li *ngFor="let product of products$ | async">
+        {{ product.name }}
+      </li>
+    </ul>
+  </div>
 </div>
-
-<mat-card class="form">
-  <mat-card-header>
-    <mat-card-title>Formulario de Prueba</mat-card-title>
-    <mat-card-subtitle>Prueba de Angular Material</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content>
-    <form class="form-container">
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Ingresa tu nombre" />
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="ejemplo@email.com" />
-        <mat-icon matSuffix>email</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Teléfono</mat-label>
-        <input matInput type="tel" placeholder="+1234567890" />
-        <mat-icon matSuffix>phone</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Descripción</mat-label>
-        <textarea
-          matInput
-          rows="3"
-          placeholder="Escribe una descripción"
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>País</mat-label>
-        <mat-select>
-          <mat-option value="mx">México</mat-option>
-          <mat-option value="es">España</mat-option>
-          <mat-option value="ar">Argentina</mat-option>
-          <mat-option value="co">Colombia</mat-option>
-        </mat-select>
-        <mat-icon matSuffix>public</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad</mat-label>
-        <mat-select>
-          <mat-option value="bsas">Buenos Aires</mat-option>
-          <mat-option value="cba">Córdoba</mat-option>
-          <mat-option value="ros">Rosario</mat-option>
-        </mat-select>
-        <mat-icon matSuffix>location_city</mat-icon>
-      </mat-form-field>
-
-      <div class="form-actions">
-        <button mat-raised-button color="primary" type="submit">
-          <mat-icon>save</mat-icon>
-          Guardar
-        </button>
-        <button mat-stroked-button type="button">
-          <mat-icon>clear</mat-icon>
-          Limpiar
-        </button>
-        <button mat-stroked-button color="warn" type="button">
-          <mat-icon>delete</mat-icon>
-          Eliminar
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
