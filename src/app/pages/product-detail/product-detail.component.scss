@@ -1,4 +1,30 @@
 .productDetail {
+  padding: 20px;
+
+  &-backButton {
+    margin-bottom: 20px;
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+
+      .mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+
   &-content {
     background: white;
     border-radius: 8px;

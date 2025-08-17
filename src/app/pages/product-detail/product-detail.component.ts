@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state.';
 import { selectProducts } from '../../store/selectors/products.selectors';
@@ -17,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private store: Store<AppState>
   ) {
     this.product$ = this.route.params.pipe(
@@ -29,4 +31,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  goBack(): void {
+    this.location.back();
+  }
 }

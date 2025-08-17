@@ -1,4 +1,11 @@
 <div class="productDetail">
+  <div class="productDetail-backButton">
+    <button mat-stroked-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Volver</span>
+    </button>
+  </div>
+
   <div
     class="productDetail-content"
     *ngIf="product$ | async as product; else loading"

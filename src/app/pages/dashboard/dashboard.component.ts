@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { AppState } from '../../store/app.state.';
 import { selectProducts } from '../../store/selectors/products.selectors';
 import { loadProducts } from '../../store/actions/products.actions';
@@ -18,7 +19,10 @@ export class DashboardComponent implements OnInit {
   lowStockProducts = 0;
   totalValue = 0;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadProducts());
@@ -49,7 +53,7 @@ export class DashboardComponent implements OnInit {
 
   // Métodos para manejar eventos de la tabla
   onViewProduct(product: Product): void {
-    console.log('Ver producto:', product);
+    this.router.navigate(['/product', product.id]);
   }
 
   onEditProduct(product: Product): void {

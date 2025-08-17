@@ -34,21 +34,27 @@
 
       <div class="stats">
         <div class="stats-card">
-          <div class="stats-card-icon purple">🔧</div>
+          <div class="stats-card-icon purple">
+            <mat-icon>inventory_2</mat-icon>
+          </div>
           <div class="stats-card-info">
             <h3>Total Productos</h3>
             <p class="number">{{ totalProducts }}</p>
           </div>
         </div>
         <div class="stats-card">
-          <div class="stats-card-icon cyan">⚠️</div>
+          <div class="stats-card-icon cyan">
+            <mat-icon>warning</mat-icon>
+          </div>
           <div class="stats-card-info">
             <h3>Stock Bajo</h3>
             <p class="number">{{ lowStockProducts }}</p>
           </div>
         </div>
         <div class="stats-card">
-          <div class="stats-card-icon green">💰</div>
+          <div class="stats-card-icon green">
+            <mat-icon>account_balance_wallet</mat-icon>
+          </div>
           <div class="stats-card-info">
             <h3>Valor Total</h3>
             <p class="number">{{ formatPrice(totalValue) }}</p>
