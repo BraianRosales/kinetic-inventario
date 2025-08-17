@@ -18,5 +18,21 @@ export const productsReducer = createReducer(
       ...state,
       loading: false,
     })
+  ),
+
+  on(ProductActions.addProduct, (state) => ({
+    ...state,
+    loading: true,
+    messageSuccess: null,
+    messageError: null,
+  })),
+
+  on(ProductActions.addProductSuccess, (state, { message, product }) =>
+    productsAdapter.addOne(product, {
+      ...state,
+      loading: false,
+      messageSuccess: message,
+      messageError: null,
+    })
   )
 );

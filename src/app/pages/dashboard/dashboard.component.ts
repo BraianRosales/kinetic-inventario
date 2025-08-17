@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '../../store/app.state.';
 import { selectProducts } from '../../store/selectors/products.selectors';
-import { loadProducts } from '../../store/actions/products.actions';
+import { loadProducts, addProduct } from '../../store/actions/products.actions';
 import { Product } from '../../core/models/product.model';
 import { AddProductDialogComponent } from '../../shared/components/add-product-dialog/add-product-dialog.component';
 import { CategoryService } from '../../core/services/category.service';
@@ -91,8 +91,7 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((product: Product) => {
       if (product) {
-        console.log('Nuevo producto:', product);
-        // TODO: Tengo que implementar la lógica para agregar el producto
+        this.store.dispatch(addProduct({ product }));
       }
     });
   }

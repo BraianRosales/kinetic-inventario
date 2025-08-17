@@ -7,3 +7,18 @@ export const loadedProducts = createAction(
   '[Product API] Loaded products success',
   props<{ products: Product[] }>()
 );
+
+export const addProduct = createAction(
+  '[Product API] Post product',
+  props<{ product: Product }>()
+);
+
+export const addProductSuccess = createAction(
+  '[Product API] Post product success',
+  props<{ message: string; product: Product }>()
+);
+
+export const addProductFailure = createAction(
+  '[Product API] Post product failure',
+  props<{ error: string }>()
+);
