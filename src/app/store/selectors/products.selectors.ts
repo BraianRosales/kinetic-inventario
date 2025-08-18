@@ -12,3 +12,23 @@ export const selectLoadingProducts = createSelector(
 );
 
 export const selectProducts = createSelector(selectAll, (products) => products);
+
+export const selectProductById = (id: string) =>
+  createSelector(selectAll, (products) =>
+    products.find((product) => product.id === id)
+  );
+
+export const selectMovements = createSelector(
+  selectProductsFeature,
+  (state) => state.movements
+);
+
+export const selectMovementsLoading = createSelector(
+  selectProductsFeature,
+  (state) => state.movementsLoading
+);
+
+export const selectMovementsError = createSelector(
+  selectProductsFeature,
+  (state) => state.movementsError
+);

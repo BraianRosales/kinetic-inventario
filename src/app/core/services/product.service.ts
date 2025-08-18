@@ -117,6 +117,11 @@ export class ProductsService {
     return of(this.products);
   }
 
+  getProductById(id: string): Observable<Product | undefined> {
+    const product = this.products.find(p => p.id === id);
+    return of(product);
+  }
+
   postProduct(
     product: Product
   ): Observable<{ message: string; product: Product }> {
@@ -135,11 +140,11 @@ export class ProductsService {
   updateProduct(
     productToUpdate: Product
   ): Observable<{ message: string; product: Product }> {
-    // Encontrar el índice del producto a actualizar
+    // Encuentra el índice del producto para actualizar
     const index = this.products.findIndex((p) => p.id === productToUpdate.id);
 
     if (index !== -1) {
-      // Actualizar el producto en el array
+      // Actualizar el producto en la lista
       this.products = [
         ...this.products.slice(0, index),
         productToUpdate,
@@ -156,7 +161,7 @@ export class ProductsService {
   }
 
   deleteProductById(id: number): Observable<{ message: string; success: boolean }> {
-    // Encontrar el índice del producto a eliminar
+    // Encuentra el índice del producto para eliminar
     const index = this.products.findIndex((p) => p.id === id.toString());
 
     if (index !== -1) {

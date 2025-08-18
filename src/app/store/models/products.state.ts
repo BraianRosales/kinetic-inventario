@@ -1,10 +1,13 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Product } from 'src/app/core/models/product.model';
+import { Product, ProductMovement } from 'src/app/core/models/product.model';
 
 export interface ProductsState extends EntityState<Product> {
   loading: boolean;
   messageSuccess: string | null;
   messageError: string | null;
+  movements: ProductMovement[];
+  movementsLoading: boolean;
+  movementsError: string | null;
 }
 
 export const productsAdapter: EntityAdapter<Product> =
@@ -18,4 +21,7 @@ export const initialProductsState: ProductsState =
     loading: false,
     messageSuccess: null,
     messageError: null,
+    movements: [],
+    movementsLoading: false,
+    movementsError: null,
   });

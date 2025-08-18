@@ -3,11 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state.';
-import { selectProducts } from '../../store/selectors/products.selectors';
-import { map, switchMap } from 'rxjs/operators';
+import {
+  selectProductById,
+  selectMovements,
+  selectMovementsLoading,
+} from '../../store/selectors/products.selectors';
+import {
+  loadProductById,
+  loadMovementsByProductId,
+} from '../../store/actions/products.actions';
+import { map, switchMap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Product, ProductMovement } from 'src/app/core/models/product.model';
-import { MovementService } from 'src/app/core/services/movement.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,29 +22,42 @@ import { MovementService } from 'src/app/core/services/movement.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  product$: Observable<Product | undefined>;
+  product$!: Observable<Product | undefined>;
   movements$!: Observable<ProductMovement[]>;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private store: Store<AppState>,
-    private movementService: MovementService
-  ) {
-    this.product$ = this.route.params.pipe(
-      switchMap((params) =>
-        this.store
-          .select(selectProducts)
-          .pipe(map((products) => products.find((p) => p.id === params['id'])))
-      )
-    );
-  }
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
+    // Guarda un producto específico por id
+    this.product$ = this.route.params.pipe(
+      switchMap((params) => {
+        const productId = params['id'];
+        this.store.dispatch(loadProductById({ id: productId }));
+        return this.store
+          .select(selectProductById(productId))
+          .pipe(filter((product) => product !== undefined));
+      })
+    );
+
+    // Guarda los movimientos de un producto específico
     this.movements$ = this.route.params.pipe(
-      switchMap((params) =>
-        this.movementService.getMovementsByProductId(params['id'])
-      )
+      switchMap((params) => {
+        const productId = params['id'];
+        this.store.dispatch(loadMovementsByProductId({ productId }));
+        return this.store
+          .select(selectMovements)
+          .pipe(
+            filter(
+              (movements) =>
+                movements.length > 0 ||
+                !this.store.select(selectMovementsLoading)
+            )
+          );
+      })
     );
   }
 

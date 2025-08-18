@@ -20,6 +20,12 @@ export const productsReducer = createReducer(
     })
   ),
 
+  on(ProductActions.loadProductsFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    messageError: error,
+  })),
+
   on(ProductActions.addProduct, (state) => ({
     ...state,
     loading: true,
@@ -70,4 +76,41 @@ export const productsReducer = createReducer(
       messageError: null,
     })
   ),
+
+  on(ProductActions.loadProductById, (state) => ({
+    ...state,
+    loading: true,
+  })),
+
+  on(ProductActions.loadedProductById, (state, { product }) =>
+    productsAdapter.upsertOne(product, {
+      ...state,
+      loading: false,
+    })
+  ),
+
+  on(ProductActions.loadProductByIdFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    messageError: error,
+  })),
+
+  on(ProductActions.loadMovementsByProductId, (state) => ({
+    ...state,
+    movementsLoading: true,
+    movementsError: null,
+  })),
+
+  on(ProductActions.loadedMovementsByProductId, (state, { movements }) => ({
+    ...state,
+    movements,
+    movementsLoading: false,
+    movementsError: null,
+  })),
+
+  on(ProductActions.loadMovementsByProductIdFailure, (state, { error }) => ({
+    ...state,
+    movementsLoading: false,
+    movementsError: error,
+  })),
 );

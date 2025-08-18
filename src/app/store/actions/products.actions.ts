@@ -1,11 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { Product } from 'src/app/core/models/product.model';
+import { Product, ProductMovement } from 'src/app/core/models/product.model';
 
 export const loadProducts = createAction('[Product API] Load products');
 
 export const loadedProducts = createAction(
   '[Product API] Loaded products success',
   props<{ products: Product[] }>()
+);
+
+export const loadProductsFailure = createAction(
+  '[Product API] Load products failure',
+  props<{ error: string }>()
 );
 
 export const addProduct = createAction(
@@ -45,5 +50,35 @@ export const deleteProductSuccess = createAction(
 
 export const deleteProductFailure = createAction(
   '[Product API] Delete product failure',
+  props<{ error: string }>()
+);
+
+export const loadProductById = createAction(
+  '[Product API] Load product by ID',
+  props<{ id: string }>()
+);
+
+export const loadedProductById = createAction(
+  '[Product API] Loaded product by ID success',
+  props<{ product: Product }>()
+);
+
+export const loadProductByIdFailure = createAction(
+  '[Product API] Load product by ID failure',
+  props<{ error: string }>()
+);
+
+export const loadMovementsByProductId = createAction(
+  '[Product API] Load movements by product ID',
+  props<{ productId: string }>()
+);
+
+export const loadedMovementsByProductId = createAction(
+  '[Product API] Loaded movements by product ID success',
+  props<{ movements: ProductMovement[]; productId: string }>()
+);
+
+export const loadMovementsByProductIdFailure = createAction(
+  '[Product API] Load movements by product ID failure',
   props<{ error: string }>()
 );
