@@ -21,7 +21,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Notification styles
 .notification-success {
   background-color: #4caf50 !important;
   color: white !important;
@@ -41,3 +40,34 @@ body {
   background-color: #2196f3 !important;
   color: white !important;
 }
+
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  button, 
+  .mat-mdc-button,
+  .mat-mdc-icon-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .mat-mdc-dialog-container {
+    .mat-mdc-dialog-content {
+      padding: 16px !important;
+    }
+  }
+
+  .mat-mdc-table {
+    min-width: 100%;
+  }
+}
+

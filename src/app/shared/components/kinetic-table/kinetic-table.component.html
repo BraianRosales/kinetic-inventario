@@ -6,7 +6,8 @@
     </div>
   </div>
 
-  <div class="table-container">
+  <!-- Desktop Table -->
+  <div class="table-container desktop-table">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" class="products-table">
         <!-- ID Column -->
@@ -119,6 +120,80 @@
         class="compact-paginator"
       >
       </mat-paginator>
+    </div>
+  </div>
+
+  <!-- Mobile Cards -->
+  <div class="mobile-cards">
+    <div class="product-card" *ngFor="let product of dataSource.data">
+      <div class="card-header">
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+        </div>
+        <div class="product-id">#{{ product.id }}</div>
+      </div>
+      
+      <div class="card-content">
+        <div class="info-row">
+          <span class="label">Marca:</span>
+          <span class="value">{{ product.brand || "N/A" }}</span>
+        </div>
+        
+        <div class="info-row">
+          <span class="label">Stock:</span>
+          <span 
+            class="stock-badge"
+            [ngClass]="getStockStatus(product.stock).class"
+          >
+            {{ product.stock }} {{ getStockStatus(product.stock).text }}
+          </span>
+        </div>
+        
+        <div class="info-row">
+          <span class="label">Precio:</span>
+          <span class="value price">{{ formatPrice(product.price) }}</span>
+        </div>
+        
+        <div class="info-row">
+          <span class="label">Ubicación:</span>
+          <span class="value">{{ product.location || "N/A" }}</span>
+        </div>
+        
+        <div class="info-row">
+          <span class="label">Categorías:</span>
+          <span class="categories-badge">
+            {{ getCategoryNames(product.categories) }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="card-actions">
+        <button
+          mat-icon-button
+          color="primary"
+          title="Ver detalles"
+          (click)="onViewProduct(product)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="accent"
+          title="Editar"
+          (click)="onEditProduct(product)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          title="Eliminar"
+          (click)="onDeleteProduct(product)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>

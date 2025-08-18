@@ -24,3 +24,23 @@
     overflow: hidden;
   }
 }
+
+@media (max-width: 768px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+    display: block;
+
+    &-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    &-main {
+      display: block;
+      overflow: visible;
+      height: auto;
+    }
+  }
+}

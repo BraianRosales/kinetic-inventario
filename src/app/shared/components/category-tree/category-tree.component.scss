@@ -139,3 +139,11 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .categoryTree {
+    &-products {
+      padding-bottom: 0px !important;
+    }
+  }
+}
