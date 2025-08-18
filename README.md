@@ -116,29 +116,29 @@ npm run test --code-coverage
 ## 📸 Screenshots
 
 ### Main Dashboard
-![Main Dashboard](./docs/images/dashboard-main.png)
+![Main Dashboard showing inventory management banner and key indicators](/docs/images/dashboard-main.png)
 *General view of the control panel showing the inventory management banner, key indicators (Total Products: 10, Low Stock: 5, Total Value: $280,300.00) and the product list.*
 
 ### Product List
-![Product List](./docs/images/product-list.png)
+![Product list section with detailed cards and actions](/docs/images/product-list.png)
 *Product list section with detailed cards showing information such as brand, available stock, price, location and categories. Includes view, edit and delete actions.*
 
 ### Complete Dashboard
-![Complete Dashboard](./docs/images/dashboard-complete.png)
+![Complete dashboard with sidebar, header and product table](/docs/images/dashboard-complete.png)
 *Complete dashboard view with category sidebar, user profile header, main banner, statistics cards and product table with pagination.*
 
 ### Data Analysis
-![Data Analysis](./docs/images/data-analysis.png)
+![Data analysis panel with charts and movement history](/docs/images/data-analysis.png)
 *Analysis panel with stock evolution charts and movements by type, plus transaction history showing inventory entries and exits.*
 
 ### Add Product Modal
-![Add Product Modal](./docs/images/add-product-modal.png)
+![Add product modal form with all required fields](/docs/images/add-product-modal.png)
 *Modal form for adding new products with all required fields: name, description, price, stock, brand, location and categories.*
 
 ## 📊 Test Coverage Report
 
 ### Coverage Summary
-![Coverage Report](./docs/images/test-coverage.png)
+![Test coverage report showing excellent code coverage](/docs/images/test-coverage.png)
 *Detailed code coverage report showing:*
 - **Statements:** 95.55% (344/360)
 - **Branches:** 92.53% (62/67)
