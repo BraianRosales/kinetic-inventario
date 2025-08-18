@@ -116,24 +116,24 @@ npm run test --code-coverage
 ## 📸 Screenshots
 
 ### Main Dashboard
-![Main Dashboard showing inventory management banner and key indicators](/assets/dashboard-main.png)
-*General view of the control panel showing the inventory management banner, key indicators (Total Products: 10, Low Stock: 5, Total Value: $280,300.00) and the product list.*
+![Main Dashboard showing inventory management banner and key indicators](/assets/dashboard.png)
 
-### Product List
-![Product list section with detailed cards and actions](/assets/product-list.png)
-*Product list section with detailed cards showing information such as brand, available stock, price, location and categories. Includes view, edit and delete actions.*
 
-### Complete Dashboard
-![Complete dashboard with sidebar, header and product table](/assets/dashboard-complete.png)
-*Complete dashboard view with category sidebar, user profile header, main banner, statistics cards and product table with pagination.*
+### Add product
+![Dialog to add a new product with the background table](/assets/dashboard-add.png)
 
-### Data Analysis
-![Data analysis panel with charts and movement history](/assets/data-analysis.png)
-*Analysis panel with stock evolution charts and movements by type, plus transaction history showing inventory entries and exits.*
 
-### Add Product Modal
-![Add product modal form with all required fields](/assets/add-product-modal.png)
-*Modal form for adding new products with all required fields: name, description, price, stock, brand, location and categories.*
+### Product Movement Charts
+![Detail of product movements](/assets/movimientos.png)
+
+### Mobile version
+![Dashboard in mobile version](/assets/dashboard-mobile.png)
+
+### Cards of the listed products
+![List of products in mobile version](/assets/dashboard-mobile-2.png)
+
+### Test coverage
+![Percentage of test coverage appliedorcentaje de test-coverage aplicado](/assets/test-coverage.png)
 
 ## 📊 Test Coverage Report
 
