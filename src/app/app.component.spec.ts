@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'kinetic-inventario'`, () => {
+  it(`must have as title 'kinetic-inventario'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('kinetic-inventario');
@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('kinetic-inventario app is running!');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Kinetic Inventario');
   });
 });

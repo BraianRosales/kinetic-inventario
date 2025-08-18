@@ -164,7 +164,7 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  private updateCharts(movements: ProductMovement[]): void {
+  public updateCharts(movements: ProductMovement[]): void {
     if (movements.length === 0) return;
 
     // Actualizar gráfico de líneas
