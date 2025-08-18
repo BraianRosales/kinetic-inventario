@@ -132,9 +132,6 @@ npm run test --code-coverage
 ### Cards of the listed products
 ![List of products in mobile version](/assets/dashboard-mobile-2.png)
 
-### Test coverage
-![Percentage of test coverage appliedorcentaje de test-coverage aplicado](/assets/test-coverage.png)
-
 ## 📊 Test Coverage Report
 
 ### Coverage Summary
